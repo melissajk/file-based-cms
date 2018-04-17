@@ -1,0 +1,21 @@
+<form action= "/<%= @filename %>/edit" method="post">
+  <label for="content">Edit content of <%= @filename %>:</label>
+  <div>
+    <textarea name="content" id="content" rows="20" cols="70"><%= @content %></textarea></div>
+    <button type="submit">Save Changes</button>
+</form>
+
+<% if File.extname(@filename) == ".md"%>  
+  <h3>Add an Image</h3>
+  <ul>
+    <% @images.each do |file| %>
+    <li>
+      <% image = File.basename(file) %>
+      <a href="/uploads/<%= image %>"><%= image %></a>
+      <form action= "/<%= @filename %>/add-image/<%= image %>" method="post" class="inline" >
+        <button type="submit">Include in File</button>
+      </form>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

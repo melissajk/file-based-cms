@@ -1,0 +1,15 @@
+<h1>Images</h1>
+<ul>
+  <% @images.each do |file| %>
+  <li>
+    <% filename = File.basename(file) %>
+    <a href="/uploads/<%= filename %>"><%= filename %></a>
+  </li>
+  <% end %>
+</ul>
+
+<form action="/upload" enctype="multipart/form-data" method="post">
+  <label for="file">Upload an image:</label><br>
+  <input name="file" type="file" />
+  <input type="submit" value="Upload" />
+</form>
